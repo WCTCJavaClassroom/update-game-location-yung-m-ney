@@ -17,11 +17,45 @@ public class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Create dungeonman object and play game while sentinel is Y
+        Dungeonman dude = new Dungeonman();
+        
+        while(dude.keepPlaying() == 'Y'){
+            playGame(dude);
+        }
     }
     
     public static void playGame(Dungeonman dude){
-        //Based on location, call instance menthods to move through the game while still alive
-        //If not alive, prompt to play again and get sentinel value
+        Scanner keyboard = new Scanner(System.in);
+        String input;
+        dude.setAlive(true);
+        dude.openingScreen();
+        dude.goMain();
+        dude.prompt();
+        
+        do{
+            input = keyboard.nextLine();
+            dude.clearScreen();
+            switch(dude.getLocation()){
+                case "main":
+                    dude.atMain(input);
+                    break;
+                case "north":
+                    dude.atNorth(input);
+                    break;
+                case "south":
+                    dude.atSouth(input);
+                    break;
+                case "dennis":
+                    dude.atDennis(input);
+                    break;
+                default:
+                    System.out.print(dude.badInput());
+            }
+            dude.prompt();
+        }while(dude.isAlive());
+        
+        if(dude.hasLost()){
+            dude.wantToKeepPlaying(keyboard.next().charAt(0));
+        }
     }
 }

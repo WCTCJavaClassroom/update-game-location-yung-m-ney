@@ -137,4 +137,7 @@ public class Dungeonman {
         alive = false;
         System.out.print(" Your score was: " + score + ".\nPlay again? [Y/N] ");
     }
+    public boolean hasLost(){
+        return(lost);
+    }
 }
