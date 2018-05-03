@@ -35,7 +35,7 @@ public class Game {
         do{
             input = keyboard.nextLine();
             dude.clearScreen();
-            switch(dude.getLocation()){
+            switch(input){
                 case "main":
                     dude.atMain(input);
                     break;
@@ -43,6 +43,7 @@ public class Game {
                     dude.atNorth(input);
                     break;
                 case "south":
+                    dude.goSouth();
                     dude.atSouth(input);
                     break;
                 case "dennis":
@@ -51,7 +52,7 @@ public class Game {
                 default:
                     System.out.print(dude.badInput());
             }
-            dude.prompt();
+       
         }while(dude.isAlive());
         
         if(dude.hasLost()){
